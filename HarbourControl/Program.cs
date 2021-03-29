@@ -117,7 +117,7 @@ namespace HarbourControl
                 // remove sailboats from queue
                 boatsQueue.Dequeue().BoatType = "Sailboat";
 
-                GetBoats();
+                //GetBoats();
 
                 var boatin = CheckBoatsInPerimeter();
 
@@ -163,8 +163,6 @@ namespace HarbourControl
                 }
 
             }
-
-
             Console.ReadKey();
         }
 

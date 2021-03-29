@@ -10,7 +10,7 @@ namespace HarbourControl.WeatherService
 {
     public class WeatherService : IWeatherService
     {
-        string url = "api.openweathermap.org/data/2.5/weather?q=durban&appid=f4f0a01dd170f927829865108b4b396d";
+        string url = "http://api.openweathermap.org/data/2.5/weather?q=durban&appid=f4f0a01dd170f927829865108b4b396d";
 
         HttpClient client;
         public WeatherService()
