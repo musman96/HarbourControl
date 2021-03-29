@@ -88,6 +88,10 @@ namespace HarbourControl
                 boatsQueue.Enqueue(boats[random.Next(boats.Count)]);
             }
 
+            foreach (var item in boatsQueue)
+            {
+                BoatsWaitingAtPerimeter.Add(item);
+            }
 
             return boatsQueue;
         }
@@ -111,8 +115,29 @@ namespace HarbourControl
             if (wind.speed< 10 || wind.speed>30)
             {
                 // remove sailboats from queue
-                boatsQueue.Dequeue().BoatType = "Sailboat:";
-                
+                boatsQueue.Dequeue().BoatType = "Sailboat";
+
+                GetBoats();
+
+                var boatin = CheckBoatsInPerimeter();
+
+                if (boatin)
+                {
+                    foreach (var boat in boatsInPerimeter)
+                    {
+                        DockBoat(boat);
+                    }
+
+                    // after boat is docked, let a new boat enter the perimeter
+                    boatsInPerimeter.Clear();
+
+                    CheckBoatsInPerimeter();
+                }
+                else
+                {
+                    // since no boat is in the perimeter, allow a boat to enter
+                    CheckBoatsInPerimeter();
+                }
             }
             else
             {
